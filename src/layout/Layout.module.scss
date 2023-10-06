@@ -1,0 +1,35 @@
+.root {
+  display: flex;
+  justify-content: center;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    max-width: 1000px;
+
+    .layout {
+      display: flex;
+      flex-direction: row;
+      padding: 25px;
+      gap: 20px;
+    }
+
+    .navLink {
+      color: #F17151;
+      font-size: 16px;
+      font-weight: 400;
+      border: 1px solid #F17151;
+      border-radius: 20px;
+      padding: 10px;
+      text-decoration: none;
+
+      &:hover {
+        color: white;
+        background-color: #F17151;
+      }
+    }
+  }
+}

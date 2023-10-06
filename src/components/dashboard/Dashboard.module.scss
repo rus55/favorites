@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-height: 80px;
+        border: 1px solid #CCCCCC;
+        border-radius: 10px;
+        margin-bottom: 10px;
+
+        .icon {
+            border-radius: 10px;
+        }
+
+        .block {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 20px;
+            width: 100%;
+
+            .fontWeight {
+                font-weight: 600;
+            }
+
+            .header {
+                padding-top: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+}
