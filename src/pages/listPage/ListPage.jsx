@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {
-    requestAddAlbumsToFavoritesSuccessAction,
+    addAlbumToFavoritesAction,
     requestAlbumsAction,
-    requestDeleteAlbumFromFavoritesAction,
-    setLoading,
-    setScroll
+    deleteAlbumFromFavoritesAction,
+    setLoadingAction,
+    setScrollAction
 } from "../../redux/actions/Actions";
 import styles from './ListPage.module.scss'
 import {NavLink} from "react-router-dom";
@@ -23,8 +23,8 @@ const ListPage = () => {
         if (isLoading) {
             if (albums.length < totalCount) {
                 dispatch(requestAlbumsAction(currentPage))
-            } else if ((albums.length = totalCount)) {
-                dispatch(setLoading(false));
+            } else if (albums.length === totalCount) {
+                dispatch(setLoadingAction(false));
             }
         }
     }, [isLoading]);
@@ -39,21 +39,21 @@ const ListPage = () => {
 
     const handleScroll = () => {
         const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
-        dispatch(setScroll(scrollTop));
+        dispatch(setScrollAction(scrollTop));
         if (scrollHeight - scrollTop - clientHeight < 100) {
             if (albums.length < totalCount) {
-                dispatch(setLoading(true));
+                dispatch(setLoadingAction(true));
             }
         }
     };
 
-    const addFavorites = (albumId) => favoritesAlbums?.map(album => album.id).includes(albumId)
+    const hasInFavorites = (albumId) => favoritesAlbums?.map(album => album.id).includes(albumId)
 
-    const addToFavorites = (album) => {
-        if (!addFavorites(album.id)) {
-            dispatch(requestAddAlbumsToFavoritesSuccessAction(album))
+    const changeItemInFavorites = (album) => {
+        if (!hasInFavorites(album.id)) {
+            dispatch(addAlbumToFavoritesAction(album))
         } else {
-            dispatch(requestDeleteAlbumFromFavoritesAction(album))
+            dispatch(deleteAlbumFromFavoritesAction(album))
         }
     }
 
@@ -68,7 +68,7 @@ const ListPage = () => {
                         <div className={styles.header}><span
                             className={styles.fontWeight}>Заголовок:</span> {album.title}</div>
                         <div className={styles.wrapperButton}>
-                            <button className={styles.button} onClick={() => addToFavorites(album)}>{addFavorites(album.id) ? 'Удалить из избранного' : 'Добавить в избранное'}</button>
+                            <button className={styles.button} onClick={() => changeItemInFavorites(album)}>{hasInFavorites(album.id) ? 'Удалить из избранного' : 'Добавить в избранное'}</button>
                         </div>
                     </div>
                 </div>

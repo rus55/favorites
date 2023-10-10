@@ -6,30 +6,22 @@ export function requestAlbumsSuccessAction(data) {
     return { type: 'REQUESTED_ALBUMS_SUCCESS', data: data };
 }
 
-export function requestAlbumsErrorAction() {
+export function albumsErrorAction() {
     return { type: 'REQUESTED_ALBUMS_FAILED'};
 }
 
-export function requestAddAlbumsToFavoritesAction(album) {
-    return { type: 'REQUESTED_ADD_ALBUMS_TO_FAVORITES', album: album};
+export function addAlbumToFavoritesAction(album) {
+    return { type: 'ADD_ALBUMS_TO_FAVORITES', album: album};
 }
 
-export function requestAddAlbumsToFavoritesSuccessAction(album) {
-    return { type: 'REQUESTED_ADD_ALBUMS_TO_FAVORITES_SUCCESS', album: album};
+export function setLoadingAction(loadingFlag) {
+    return { type: 'SET_LOADING', loadingFlag: loadingFlag };
 }
 
-export function requestAddAlbumsToFavoritesErrorAction() {
-    return { type: 'REQUESTED_ADD_ALBUMS_TO_FAVORITES_FAILED'};
+export function setScrollAction(scrollTop) {
+    return { type: 'SET_SCROLL', scrollTop: scrollTop };
 }
 
-export function setLoading(data) {
-    return { type: 'SET_LOADING', data: data };
-}
-
-export function setScroll(data) {
-    return { type: 'SET_SCROLL', data: data };
-}
-
-export function requestDeleteAlbumFromFavoritesAction(data) {
-    return { type: 'DELETE_FROM_FAVORITES', data: data };
+export function deleteAlbumFromFavoritesAction(album) {
+    return { type: 'DELETE_FROM_FAVORITES', album: album };
 }
